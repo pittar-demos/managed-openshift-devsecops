@@ -14,3 +14,4 @@ resources:
   - rest-heroes-workspace-pvc.yaml
   - rest-villains-pipeline.yaml
   - rest-villains-workspace-pvc.yaml
+  - image-puller-rbac.yaml

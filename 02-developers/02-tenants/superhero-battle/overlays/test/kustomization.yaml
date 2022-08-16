@@ -9,5 +9,5 @@ bases:
 
 images:
   - name: fights
-    newName: image-registry.openshift-image-registry.svc:5000/heroes/rest-fights
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-fights
     newTag: latest
