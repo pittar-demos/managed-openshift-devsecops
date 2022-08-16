@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: superhero-battle-dev
+
+bases:
+  - ../../base/fights/database
+  - ../../base/fights/app
+
+images:
+  - name: fights
+    newName: image-registry.openshift-image-registry.svc:5000/heroes/rest-fights
+    newTag: latest

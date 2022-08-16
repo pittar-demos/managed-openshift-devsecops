@@ -55,7 +55,7 @@ spec:
                 name: rest-fights-config-creds
             - configMapRef:
                 name: rest-fights-config
-          image: image-registry.openshift-image-registry.svc:5000/heroes/rest-fights:latest
+          image: fights
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
