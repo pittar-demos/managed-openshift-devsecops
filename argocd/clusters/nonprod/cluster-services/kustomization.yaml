@@ -2,8 +2,8 @@ kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
 bases:
-  - ../../../../cluster-services/openshift-pipelines-operator
-  - ../../../../cluster-services/web-terminal-operator
+  - ../../../cluster-services/openshift-pipelines-operator
+  - ../../../cluster-services/web-terminal-operator
 #  - ../../../03-cluster-services/06-workload-monitoring
 #  - ../../../03-cluster-services/07-compliance
 

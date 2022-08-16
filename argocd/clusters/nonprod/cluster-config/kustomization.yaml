@@ -2,9 +2,9 @@ kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
 bases:
-  - ../../../../cluster-config/openshift-gitops
-  - ../../../../cluster-config/groups-and-membership
-  - ../../../../cluster-config/cluster-monitoring
+  - ../../../cluster-config/openshift-gitops
+  - ../../../cluster-config/groups-and-membership
+  - ../../../cluster-config/cluster-monitoring
 
 resources:
   - cluster-config-project.yaml
