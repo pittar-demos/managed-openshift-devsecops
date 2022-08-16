@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: fights-db
+    application: fights-service
+    system: quarkus-super-heroes
+  name: fights-db
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    name: fights-db
+  type: ClusterIP

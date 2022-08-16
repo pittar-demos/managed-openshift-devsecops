@@ -28,7 +28,7 @@ oc apply -k https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operat
 # Once OpenShift GitOps is deployed, patch the config to enable Dex and Edge Termintad route.
 oc patch argocd openshift-gitops -n openshift-gitops \
   --type='merge' \
-  --patch-file setup/argocd-extended-config-patch.yaml 
+  --patch-file 00-setup/argocd-extended-config-patch.yaml 
 ```
 
 In a moment, you will have your first instance of OpenShift GitOps (Argo CD) running in the `openshift-gitops` namespace.  You should also see a new link for "OpenShift GitOps" in the links menu of the OpenShift UI (the little "grid" icon near the top-right of the screen).
