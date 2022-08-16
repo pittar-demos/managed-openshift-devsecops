@@ -6,6 +6,8 @@ namespace: superhero-battle-dev
 bases:
   - ../../base/villains/database
   - ../../base/villains/app
+  - ../../base/heroes/database
+  - ../../base/heroes/app
 
 images:
   - name: fights
@@ -13,4 +15,7 @@ images:
     newTag: latest
   - name: villains
     newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains
+    newTag: latest
+  - name: heroes
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-heroes
     newTag: latest

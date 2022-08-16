@@ -55,7 +55,7 @@ spec:
                 name: rest-heroes-config-creds
             - configMapRef:
                 name: rest-heroes-config
-          image: image-registry.openshift-image-registry.svc:5000/heroes/rest-heroes:latest
+          image: heroes
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
