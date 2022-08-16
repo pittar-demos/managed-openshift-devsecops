@@ -5,4 +5,4 @@ resources:
   - rest-heroes-db-config-secret.yaml
   - rest-heroes-db-deploy.yaml
   - rest-heroes-db-init-cm.yaml
-  - est-heroes-db-service.yaml
+  - rest-heroes-db-service.yaml
