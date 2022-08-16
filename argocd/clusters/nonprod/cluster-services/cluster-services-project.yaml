@@ -4,6 +4,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   name: cluster-services
+  namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:
   - group: '*'

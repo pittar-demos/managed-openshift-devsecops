@@ -10,3 +10,8 @@ spec:
     dex:
       openShiftOAuth: true
     provider: dex
+  rbac:
+    defaultPolicy: role:readonly
+    policy: |
+      g, openshift-gitops-admins, role:admin
+    scopes: "[groups]"
