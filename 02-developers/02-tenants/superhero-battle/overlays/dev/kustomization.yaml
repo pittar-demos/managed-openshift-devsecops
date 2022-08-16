@@ -4,10 +4,13 @@ kind: Kustomization
 namespace: superhero-battle-dev
 
 bases:
-  - ../../base/fights/database
-  - ../../base/fights/app
+  - ../../base/villains/database
+  - ../../base/villains/app
 
 images:
   - name: fights
     newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-fights
+    newTag: latest
+  - name: villains
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains
     newTag: latest
