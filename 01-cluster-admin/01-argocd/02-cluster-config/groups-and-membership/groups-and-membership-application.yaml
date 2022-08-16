@@ -13,7 +13,7 @@ spec:
   project: cluster-config
   source:
     path: 01-cluster-admin/02-cluster-config/groups-and-membership
-    repoURL: https://github.com/pittar-gitops/gitops-mono-repo.git
+    repoURL: https://github.com/pittar-demos/rosa-devops.git
     targetRevision: main
   syncPolicy:
     automated:
