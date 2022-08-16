@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-config
   source:
-    path: cluster-config/openshift-gitops
+    path: 01-cluster-admin/02-cluster-config/openshift-gitops
     repoURL: https://github.com/pittar-demos/rosa-devops.git
     targetRevision: main
   syncPolicy:

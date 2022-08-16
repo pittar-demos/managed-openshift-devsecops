@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-bootstrap
   source:
-    path: argocd/clusters/nonprod
+    path: 01-cluster-admin/01-argocd/01-clusters/nonprod
     repoURL: https://github.com/pittar-demos/rosa-devops.git
     targetRevision: main
   syncPolicy:
