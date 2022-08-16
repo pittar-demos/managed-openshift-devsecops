@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-services
   source:
-    path: cluster-services/web-terminal-operator
+    path: 01-cluster-admin/03-cluster-services/web-terminal-operator
     repoURL: https://github.com/pittar-demos/rosa-devops.git
     targetRevision: main
   syncPolicy:
