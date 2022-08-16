@@ -1,0 +1,14 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+namespace: openshift-gitops
+
+#bases:
+  #- ../../../04-tenants/00-developer-gitops
+  #- ../../../04-tenants/01-common-tools
+  #- ../../../04-tenants/02-contoso
+  #- ../../../04-tenants/03-gameoflife
+  #- ../../../04-tenants/04-superhero-battle
+
+resources:
+  - tenants-project.yaml

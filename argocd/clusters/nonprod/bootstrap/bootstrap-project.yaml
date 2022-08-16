@@ -1,0 +1,14 @@
+kind: AppProject
+apiVersion: argoproj.io/v1alpha1
+metadata:
+  name: cluster-bootstrap
+  namespace: openshift-gitops
+spec:
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  destinations:
+  - namespace: '*'
+    server: '*'
+  sourceRepos:
+  - '*'

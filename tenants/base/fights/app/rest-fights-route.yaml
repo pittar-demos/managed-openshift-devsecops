@@ -1,0 +1,24 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    app.openshift.io/connects-to: "fights-db,otel-collector"
+  labels:
+    app.kubernetes.io/name: rest-fights
+    app.kubernetes.io/part-of: fights-service
+    app.kubernetes.io/version: native-java11-latest
+    app: rest-fights
+    application: fights-service
+    system: quarkus-super-heroes
+    app.openshift.io/runtime: quarkus
+    name: rest-fights
+  name: rest-fights
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: rest-fights
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
