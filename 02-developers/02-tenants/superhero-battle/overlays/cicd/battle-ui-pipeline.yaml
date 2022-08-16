@@ -32,7 +32,7 @@ spec:
     - name: buildah-1-7-0
       params:
         - name: IMAGE
-          value: 'image-registry.openshift-image-registry.svc:5000/heroes/ui:latest'
+          value: 'image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui:latest'
         - name: BUILDER_IMAGE
           value: >-
             registry.redhat.io/rhel8/buildah@sha256:23fb7971ea6ac4aaaaa1139473a602df0df19222a3b5a76b551b2b9ddd92e927
