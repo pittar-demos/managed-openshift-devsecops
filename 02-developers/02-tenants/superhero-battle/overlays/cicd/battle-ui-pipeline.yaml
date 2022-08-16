@@ -39,7 +39,7 @@ spec:
         - name: STORAGE_DRIVER
           value: vfs
         - name: DOCKERFILE
-          value: ./Dockerfile
+          value: ./Containerfile
         - name: CONTEXT
           value: ui-super-heroes
         - name: TLSVERIFY
