@@ -4,8 +4,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 namespace: openshift-gitops
 
 bases:
-  - ../../../03-cluster-services/02-openshift-pipelines
-  - ../../../03-cluster-services/03-web-terminal
+  - ../../../cluster-services/openshift-pipelines
+  - ../../../cluster-services/web-terminal
 #  - ../../../03-cluster-services/06-workload-monitoring
 #  - ../../../03-cluster-services/07-compliance
 
