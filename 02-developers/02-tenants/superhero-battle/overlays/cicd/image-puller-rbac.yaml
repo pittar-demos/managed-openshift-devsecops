@@ -6,10 +6,4 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: system:image-puller
-subjects:
-  - kind: ServiceAccount
-    name: default
-    namespace: superhero-battle-dev
-  - kind: ServiceAccount
-    name: default
-    namespace: superhero-battle-test
+subjects: []
