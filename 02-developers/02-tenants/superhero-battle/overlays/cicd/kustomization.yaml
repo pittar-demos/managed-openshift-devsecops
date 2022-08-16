@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - battle-ui-pipeline.yaml
+  - event-statistics-pipeline.yaml
+  - rest-fights-pipeline.yaml
+  - rest-heroes-pipeline.yaml
+  - rest-villains-pipeline.yaml
