@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
 metadata:
-  name: fights-kafka
+  name: fights
   namespace: superhero-battle-dev
 spec:
   config: {}
