@@ -10,7 +10,7 @@ metadata:
   labels:
     app.kubernetes.io/name: rest-fights
     app.kubernetes.io/part-of: fights-service
-    app.kubernetes.io/version: native-java11-latest
+    app.kubernetes.io/version: java11-latest
     app: rest-fights
     application: fights-service
     system: quarkus-super-heroes
