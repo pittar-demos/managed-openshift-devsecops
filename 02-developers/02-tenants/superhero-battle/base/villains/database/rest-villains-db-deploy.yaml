@@ -19,6 +19,7 @@ spec:
       labels:
         application: villains-service
         name: villains-db
+        app: villains-db
     spec:
       containers:
         - envFrom:
