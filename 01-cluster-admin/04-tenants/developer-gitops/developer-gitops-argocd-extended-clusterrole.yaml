@@ -17,3 +17,9 @@ rules:
       - servicemonitors
     verbs:
       - '*'
+  - apiGroups:
+    - registry.apicur.io
+    resources:
+      - apicurioregistries
+    verbs:
+      - '*'
