@@ -12,7 +12,7 @@ metadata:
   labels:
     app.kubernetes.io/name: event-statistics
     app.kubernetes.io/part-of: event-stats
-    app.kubernetes.io/version: java17-latest
+    app.kubernetes.io/version: java11-latest
     app: event-statistics
     application: event-stats
     system: quarkus-super-heroes

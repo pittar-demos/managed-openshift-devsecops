@@ -40,7 +40,7 @@ spec:
         system: quarkus-super-heroes
         app.openshift.io/runtime: quarkus
         app.kubernetes.io/part-of: event-statistics-service
-        app.kubernetes.io/version: native-java11-latest
+        app.kubernetes.io/version: java11-latest
         app.kubernetes.io/name: event-statistics
         name: event-statistics
     spec:

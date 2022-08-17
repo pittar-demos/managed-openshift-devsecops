@@ -12,7 +12,7 @@ metadata:
   labels:
     app.kubernetes.io/name: rest-fights
     app.kubernetes.io/part-of: fights-service
-    app.kubernetes.io/version: native-java11-latest
+    app.kubernetes.io/version: java11-latest
     app: rest-fights
     application: fights-service
     system: quarkus-super-heroes
@@ -32,7 +32,7 @@ spec:
         app.openshift.io/vcs-url: https://github.com/pittar-sandbox/quarkus-super-heroes
         prometheus.io/scrape: "true"
         prometheus.io/path: /q/metrics
-        prometheus.io/port: "8084"
+        prometheus.io/port: "8080"
         prometheus.io/scheme: http
       labels:
         app: rest-fights
@@ -40,7 +40,7 @@ spec:
         system: quarkus-super-heroes
         app.openshift.io/runtime: quarkus
         app.kubernetes.io/part-of: fights-service
-        app.kubernetes.io/version: native-java11-latest
+        app.kubernetes.io/version: java11-latest
         app.kubernetes.io/name: rest-fights
         name: rest-fights
     spec:

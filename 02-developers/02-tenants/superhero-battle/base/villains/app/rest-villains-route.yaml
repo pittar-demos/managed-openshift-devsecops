@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: rest-villains
     app.kubernetes.io/part-of: villains-service
-    app.kubernetes.io/version: native-java11-latest
+    app.kubernetes.io/version: java11-latest
     app: rest-villains
     application: villains-service
     system: quarkus-super-heroes

@@ -6,7 +6,7 @@ metadata:
   labels:
     app.kubernetes.io/name: rest-heroes
     app.kubernetes.io/part-of: heroes-service
-    app.kubernetes.io/version: native-java11-latest
+    app.kubernetes.io/version: java11-latest
     app: rest-heroes
     application: heroes-service
     system: quarkus-super-heroes
