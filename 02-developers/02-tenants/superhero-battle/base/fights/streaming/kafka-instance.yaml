@@ -1,33 +1,33 @@
-apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
+apiVersion: kafka.strimzi.io/v1beta2
 metadata:
   name: fights-kafka
 spec:
-  entityOperator:
-    topicOperator: {}
-    userOperator: {}
   kafka:
-    config:
-      default.replication.factor: 3
-      inter.broker.protocol.version: '3.2'
-      min.insync.replicas: 2
-      offsets.topic.replication.factor: 3
-      transaction.state.log.min.isr: 2
-      transaction.state.log.replication.factor: 3
+    version: 3.2.0
+    replicas: 3
     listeners:
       - name: plain
         port: 9092
-        tls: false
         type: internal
+        tls: false
       - name: tls
         port: 9093
-        tls: true
         type: internal
-    replicas: 3
+        tls: true
+    config:
+      offsets.topic.replication.factor: 3
+      transaction.state.log.replication.factor: 3
+      transaction.state.log.min.isr: 2
+      default.replication.factor: 3
+      min.insync.replicas: 2
+      inter.broker.protocol.version: '3.2'
     storage:
       type: ephemeral
-    version: 3.2.0
   zookeeper:
     replicas: 3
     storage:
       type: ephemeral
+  entityOperator:
+    topicOperator: {}
+    userOperator: {}

@@ -1,11 +1,12 @@
-apiVersion: kafka.strimzi.io/v1beta2
 kind: KafkaTopic
+apiVersion: kafka.strimzi.io/v1beta2
 metadata:
   name: fights
+  labels:
+    strimzi.io/cluster: fights-kafka
 spec:
-  config:
-    cleanup.policy: compact
-    min.insync.replicas: '2'
-  partitions: 1
+  partitions: 10
   replicas: 3
-  topicName: fights
+  config:
+    retention.ms: 604800000
+    segment.bytes: 1073741824
