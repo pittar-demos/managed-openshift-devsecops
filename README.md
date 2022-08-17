@@ -35,6 +35,12 @@ In a moment, you will have your first instance of OpenShift GitOps (Argo CD) run
 
 You can click on that link and login with your cluster admin credentials now if you like, but you don't need to quite yet if you're itching to deploy more stuff!
 
-### Deploy an "App of Apps"
+### Deploy an "App of Apps" for Cluster Config
 
 The rest of the configuration will be done by Argo CD / OpenShift GitOps.  For this, we will create an Argo CD `Application` that references a git repository that contains the other Argo CD `Applications` that make up the different components of this demo.  This is a very common pattern to use in the world of Argo CD.
+
+First, we will deploy the "App of Apps" responsible for cluster configuration:
+
+```
+oc apply -k 01-cluster-admin/01-argocd/01-clusters/nonprod/bootstrap
+```
