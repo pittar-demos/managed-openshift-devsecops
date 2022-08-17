@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.openshift.io/connects-to: "villains-db,otel-collector"
+    app.openshift.io/connects-to: [{"apiVersion":"apps.openshift.io/v1","kind":"Deployment","name":"villains-db"}]
     app.openshift.io/vcs-ref: main
     app.openshift.io/vcs-url: https://github.com/pittar-sandbox/quarkus-super-heroes
     prometheus.io/scrape: "true"
@@ -27,7 +27,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.openshift.io/connects-to: "villains-db,otel-collector"
+        app.openshift.io/connects-to: [{"apiVersion":"apps.openshift.io/v1","kind":"Deployment","name":"villains-db"}]
         app.openshift.io/vcs-ref: main
         app.openshift.io/vcs-url: https://github.com/pittar-sandbox/quarkus-super-heroes
         prometheus.io/scrape: "true"
