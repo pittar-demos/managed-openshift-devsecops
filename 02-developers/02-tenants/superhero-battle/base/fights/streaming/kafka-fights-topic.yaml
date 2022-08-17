@@ -6,5 +6,5 @@ metadata:
 spec:
   config: {}
   partitions: 1
-  replicas: 1
+  replicas: 3
   topicName: fights
