@@ -12,6 +12,7 @@ bases:
   - ../../base/fights/database
   - ../../base/fights/streaming
   - ../../base/fights/app
+  - ../../base/battle-ui/app
 
 images:
   - name: fights
