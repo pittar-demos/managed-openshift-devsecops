@@ -27,7 +27,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.openshift.io/connects-to: "fights-kafka-bootstrap,apicurio-service,otel-collector"
+        app.openshift.io/connects-to: "fights-kafka,apicurio,otel-collector"
         app.openshift.io/vcs-ref: main
         app.openshift.io/vcs-url: https://github.com/pittar-sandbox/quarkus-super-heroes
         prometheus.io/scrape: "true"
