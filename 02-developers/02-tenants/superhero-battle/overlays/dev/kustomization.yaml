@@ -9,6 +9,7 @@ bases:
   - ../../base/heroes/database
   - ../../base/heroes/app
   - ../../base/fights/database
+  - ../../base/fights/streaming
 
 images:
   - name: fights
