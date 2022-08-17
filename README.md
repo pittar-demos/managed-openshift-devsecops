@@ -44,3 +44,11 @@ First, we will deploy the "App of Apps" responsible for cluster configuration:
 ```
 oc apply -k 01-cluster-admin/01-argocd/01-clusters/nonprod/bootstrap
 ```
+
+### Deploy an "App of Apps" for Developer Setup
+
+Once the cluster is configured, it's time to bootstrap any applications, tools, or CI pipelines developers require.
+
+```
+oc apply -k 02-developers/01-argocd/01-clusters/nonprod/bootstrap
+```
