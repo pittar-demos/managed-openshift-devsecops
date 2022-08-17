@@ -5,5 +5,5 @@ metadata:
 spec:
   configuration:
     kafkasql:
-      bootstrapServers: 'fights-kafka-bootstrap:9092'
+      bootstrapServers: 'fights-kafka-kakfa-bootstrap:9092'
     persistence: kafkasql
