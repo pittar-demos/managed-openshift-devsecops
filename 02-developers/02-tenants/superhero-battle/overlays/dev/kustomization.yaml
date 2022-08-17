@@ -13,6 +13,7 @@ bases:
   - ../../base/fights/streaming
   - ../../base/fights/app
   - ../../base/battle-ui/app
+  - ../../base/event-statistics/app
 
 images:
   - name: fights
@@ -23,4 +24,7 @@ images:
     newTag: latest
   - name: heroes
     newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-heroes
+    newTag: latest
+  - name: event-statistics
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/event-statistics
     newTag: latest

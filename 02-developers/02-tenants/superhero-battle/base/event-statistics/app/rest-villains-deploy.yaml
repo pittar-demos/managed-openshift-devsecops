@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.openshift.io/connects-to: "villains-db,otel-collector"
+    app.openshift.io/connects-to: "fights-kafka-bootstrap,apicurio-service,otel-collector"
     app.openshift.io/vcs-ref: main
     app.openshift.io/vcs-url: https://github.com/pittar-sandbox/quarkus-super-heroes
     prometheus.io/scrape: "true"
@@ -10,39 +10,39 @@ metadata:
     prometheus.io/port: "8080"
     prometheus.io/scheme: http
   labels:
-    app.kubernetes.io/name: rest-villains
-    app.kubernetes.io/part-of: villains-service
-    app.kubernetes.io/version: native-java11-latest
-    app: rest-villains
-    application: villains-service
+    app.kubernetes.io/name: event-statistics
+    app.kubernetes.io/part-of: event-statistics-service
+    app.kubernetes.io/version: java11-latest
+    app: event-statistics
+    application: event-statistics-service
     system: quarkus-super-heroes
     app.openshift.io/runtime: quarkus
-    name: rest-villains
-  name: rest-villains
+    name: event-statistics
+  name: event-statistics
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: rest-villains
+      name: event-statistics
   template:
     metadata:
       annotations:
-        app.openshift.io/connects-to: "villains-db,otel-collector"
+        app.openshift.io/connects-to: "fights-kafka-bootstrap,apicurio-service,otel-collector"
         app.openshift.io/vcs-ref: main
         app.openshift.io/vcs-url: https://github.com/pittar-sandbox/quarkus-super-heroes
         prometheus.io/scrape: "true"
         prometheus.io/path: /q/metrics
-        prometheus.io/port: "8084"
+        prometheus.io/port: "8080"
         prometheus.io/scheme: http
       labels:
-        app: rest-villains
-        application: villains-service
+        app: event-statistics
+        application: event-statistics-service
         system: quarkus-super-heroes
         app.openshift.io/runtime: quarkus
-        app.kubernetes.io/part-of: villains-service
+        app.kubernetes.io/part-of: event-statistics-service
         app.kubernetes.io/version: native-java11-latest
-        app.kubernetes.io/name: rest-villains
-        name: rest-villains
+        app.kubernetes.io/name: event-statistics
+        name: event-statistics
     spec:
       containers:
         - env:
@@ -52,10 +52,10 @@ spec:
                   fieldPath: metadata.namespace
           envFrom:
             - secretRef:
-                name: rest-villains-config-creds
+                name: event-statistics-config-creds
             - configMapRef:
-                name: rest-villains-config
-          image: image-registry.openshift-image-registry.svc:5000/heroes/rest-villains:latest
+                name: event-statistics-config
+          image: event-statistics
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -67,7 +67,7 @@ spec:
             periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 10
-          name: rest-villains
+          name: event-statistics
           ports:
             - containerPort: 8080
               name: http
@@ -84,8 +84,8 @@ spec:
             timeoutSeconds: 10
           resources:
             limits:
-              memory: 256Mi
+              memory: 768Mi
               cpu: 1
             requests:
-              memory: 256Mi
+              memory: 768Mi
               cpu: 0.2
