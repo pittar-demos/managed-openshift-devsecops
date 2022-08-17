@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: superhero-battle-dev
 
 bases:
+  - ../../base/schema-registry
   - ../../base/villains/database
   - ../../base/villains/app
   - ../../base/heroes/database
