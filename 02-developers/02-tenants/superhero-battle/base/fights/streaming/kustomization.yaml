@@ -5,4 +5,4 @@ resources:
   # - fights-kafka-deploy.yaml
   # - fights-kafka-service.yaml
   - kafka-instance.yaml
-  - kafka-topic.yaml
+  - kafka-fights-topic.yaml
