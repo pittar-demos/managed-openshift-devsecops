@@ -6,6 +6,7 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   name: argocd
 spec:
+  applicationInstanceLabelKey: argocd.argoproj.io/instance
   server:
     insecure: true
     route:
