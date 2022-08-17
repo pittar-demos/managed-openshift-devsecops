@@ -6,6 +6,7 @@ metadata:
     application: villains-service
     system: quarkus-super-heroes
     app.kubernetes.io/part-of: villains-service
+    app.kubernetes.io/instance: villains-db
     app.openshift.io/runtime: postgresql
     name: villains-db
   name: villains-db
