@@ -11,6 +11,7 @@ bases:
   - ../../base/heroes/app
   - ../../base/fights/database
   - ../../base/fights/streaming
+  - ../../base/fights/app
 
 images:
   - name: fights
