@@ -10,7 +10,7 @@ metadata:
     name: apicurio-service
     application: fights-service
     system: quarkus-super-heroes
-  name: apicurio
+  name: apicurio-service
 spec:
   ports:
     - port: 8080
