@@ -4,5 +4,4 @@ kind: Kustomization
 resources:
   - fights-db-config-secret.yaml
   - fights-db-deploy.yaml
-  - fights-db-init-dm.yaml
   - fights-db-service.yaml

@@ -8,6 +8,7 @@ bases:
   - ../../base/villains/app
   - ../../base/heroes/database
   - ../../base/heroes/app
+  - ../../base/fights/database
 
 images:
   - name: fights

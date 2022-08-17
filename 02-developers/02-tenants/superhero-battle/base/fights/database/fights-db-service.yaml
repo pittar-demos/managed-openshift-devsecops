@@ -8,9 +8,9 @@ metadata:
   name: fights-db
 spec:
   ports:
-    - port: 5432
+    - port: 27017
       protocol: TCP
-      targetPort: 5432
+      targetPort: 27017
   selector:
     name: fights-db
   type: ClusterIP
