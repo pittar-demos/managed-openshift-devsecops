@@ -1,0 +1,9 @@
+apiVersion: registry.apicur.io/v1
+kind: ApicurioRegistry
+metadata:
+  name: apicurio
+spec:
+  configuration:
+    kafkasql:
+      bootstrapServers: 'fights-kafka:9092'
+    persistence: kafkasql
