@@ -52,7 +52,7 @@ spec:
           workspace: rest-heroes-workspace
         - name: maven-settings
           workspace: rest-heroes-workspace
-    - name: buildah-1-7-0
+    - name: build-image-buildah
       params:
         - name: IMAGE
           value: >-
@@ -77,6 +77,26 @@ spec:
         name: buildah-1-7-0
       workspaces:
         - name: source
+          workspace: rest-heroes-workspace
+    - name: tag-dev-skopeo
+      runAfter:
+        - build-image-buildah
+      taskRef:
+        kind: ClusterTask
+        name: skopeo-copy-1-7-0
+      params:
+        - name: srcImageURL
+          value: >-
+            docker://image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-heroes@$(tasks.build-image-buildah.results.IMAGE_DIGEST)
+        - name: destImageURL
+          value: >-
+            docker://image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-heroes:dev
+        - name: srcTLSverify
+          value: 'false'
+        - name: destTLSverify
+          value: 'false'
+      workspaces:
+        - name: images-url
           workspace: rest-heroes-workspace
   workspaces:
     - name: rest-heroes-workspace
