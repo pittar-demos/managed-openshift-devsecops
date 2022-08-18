@@ -1,13 +1,30 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: superhero-battle-dev
+namespace: superhero-battle-test
 
 bases:
+  - ../../base/schema-registry
+  - ../../base/villains/database
+  - ../../base/villains/app
+  - ../../base/heroes/database
+  - ../../base/heroes/app
   - ../../base/fights/database
+  - ../../base/fights/streaming
   - ../../base/fights/app
+  - ../../base/battle-ui/app
+  - ../../base/event-statistics/app
 
 images:
   - name: fights
     newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-fights
+    newTag: latest
+  - name: villains
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains
+    newTag: latest
+  - name: heroes
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-heroes
+    newTag: latest
+  - name: event-statistics
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/event-statistics
     newTag: latest
