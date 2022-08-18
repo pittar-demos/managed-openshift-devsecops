@@ -29,7 +29,7 @@ spec:
       workspaces:
         - name: output
           workspace: ui-pipeline-workspace
-    - name: buildah-1-7-0
+    - name: build-image-buildah
       params:
         - name: IMAGE
           value: 'image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui:latest'
@@ -53,6 +53,26 @@ spec:
         name: buildah-1-7-0
       workspaces:
         - name: source
+          workspace: ui-pipeline-workspace
+    - name: tag-dev-skopeo
+      runAfter:
+        - build-image-buildah
+      taskRef:
+        kind: ClusterTask
+        name: skopeo-copy-1-7-0
+      params:
+        - name: srcImageURL
+          value: >-
+            image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui@$(tasks.build-image-builday.results.IMAGE_DIGEST)
+        - name: destImageURL
+          value: >-
+            image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui:dev
+        - name: srcTLSverify
+          value: 'false'
+        - name: destTLSverify
+          value: 'false'
+      workspaces:
+        - name: images-url
           workspace: ui-pipeline-workspace
   workspaces:
     - name: ui-pipeline-workspace
