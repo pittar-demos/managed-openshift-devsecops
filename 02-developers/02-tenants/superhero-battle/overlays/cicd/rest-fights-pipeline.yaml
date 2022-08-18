@@ -52,7 +52,7 @@ spec:
           workspace: rest-fights-workspace
         - name: maven-settings
           workspace: rest-fights-workspace
-    - name: image-builder-buildah
+    - name: build-image-buildah
       params:
         - name: IMAGE
           value: >-
