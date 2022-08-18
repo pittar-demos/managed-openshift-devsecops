@@ -63,10 +63,10 @@ spec:
       params:
         - name: srcImageURL
           value: >-
-            image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui@$(tasks.build-image-buildah.results.IMAGE_DIGEST)
+            docker://image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui@$(tasks.build-image-buildah.results.IMAGE_DIGEST)
         - name: destImageURL
           value: >-
-            image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui:dev
+            docker://image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui:dev
         - name: srcTLSverify
           value: 'false'
         - name: destTLSverify
