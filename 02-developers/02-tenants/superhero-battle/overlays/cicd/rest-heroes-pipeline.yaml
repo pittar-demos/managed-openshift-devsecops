@@ -28,7 +28,7 @@ spec:
         name: git-clone-1-7-0
       workspaces:
         - name: output
-          workspace: rest-heroes-workspace
+          workspace: pipeline-workspace
     - name: maven-1-7-0
       params:
         - name: MAVEN_IMAGE
@@ -49,9 +49,9 @@ spec:
         name: maven-1-7-0
       workspaces:
         - name: source
-          workspace: rest-heroes-workspace
+          workspace: pipeline-workspace
         - name: maven-settings
-          workspace: rest-heroes-workspace
+          workspace: pipeline-workspace
     - name: build-image-buildah
       params:
         - name: IMAGE
@@ -77,7 +77,7 @@ spec:
         name: buildah-1-7-0
       workspaces:
         - name: source
-          workspace: rest-heroes-workspace
+          workspace: pipeline-workspace
     - name: tag-dev-skopeo
       runAfter:
         - build-image-buildah
@@ -97,6 +97,6 @@ spec:
           value: 'false'
       workspaces:
         - name: images-url
-          workspace: rest-heroes-workspace
+          workspace: pipeline-workspace
   workspaces:
-    - name: rest-heroes-workspace
+    - name: pipeline-workspace

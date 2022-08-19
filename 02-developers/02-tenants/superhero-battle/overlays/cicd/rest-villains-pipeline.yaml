@@ -3,11 +3,32 @@ kind: Pipeline
 metadata:
   name: rest-villains-pipeline
 spec:
+  params:
+    - name: app-name
+      type: string
+      description: Name of the application image.
+      default: "rest-villains"
+    - name: git-url
+      type: string
+      description: Git repository URL.
+      default: "https://github.com/pittar-sandbox/quarkus-super-heroes.git"
+    - name: git-revision
+      type: string
+      description: Git branch or tag.
+      default: "main"
+    - name: registry-base-url
+      type: string
+      description: Base image registry url.
+      default: "image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/"
+  workspaces:
+    - name: pipeline-workspace
   tasks:
-    - name: git-clone-1-7-0
+    - name: git-clone
       params:
         - name: url
-          value: 'https://github.com/pittar-sandbox/quarkus-super-heroes.git'
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)
         - name: submodules
           value: 'true'
         - name: depth
@@ -18,9 +39,6 @@ spec:
           value: 'true'
         - name: verbose
           value: 'true'
-        - name: gitInitImage
-          value: >-
-            registry.redhat.io/openshift-pipelines/pipelines-git-init-rhel8@sha256:8949bb90e05704aef387e5b8d7143f2dc807c8c693c59193a9bb54d8c0e43b21
         - name: userHome
           value: /tekton/home
       taskRef:
@@ -28,12 +46,9 @@ spec:
         name: git-clone-1-7-0
       workspaces:
         - name: output
-          workspace: rest-villains-workspace
+          workspace: pipeline-workspace
     - name: maven-1-7-0
       params:
-        - name: MAVEN_IMAGE
-          value: >-
-            image-registry.openshift-image-registry.svc:5000/openshift/java:latest
         - name: GOALS
           value:
             - package
@@ -43,23 +58,20 @@ spec:
         - name: CONTEXT_DIR
           value: rest-villains
       runAfter:
-        - git-clone-1-7-0
+        - git-clone
       taskRef:
         kind: ClusterTask
         name: maven-1-7-0
       workspaces:
         - name: source
-          workspace: rest-villains-workspace
+          workspace: pipeline-workspace
         - name: maven-settings
-          workspace: rest-villains-workspace
+          workspace: pipeline-workspace
     - name: build-image-buildah
       params:
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains:latest
-        - name: BUILDER_IMAGE
-          value: >-
-            registry.redhat.io/rhel8/buildah@sha256:23fb7971ea6ac4aaaaa1139473a602df0df19222a3b5a76b551b2b9ddd92e927
+            $(params.registry-base-url)$(params.app-name):latest
         - name: STORAGE_DRIVER
           value: vfs
         - name: DOCKERFILE
@@ -77,7 +89,7 @@ spec:
         name: buildah-1-7-0
       workspaces:
         - name: source
-          workspace: rest-villains-workspace
+          workspace: pipeline-workspace
     - name: tag-dev-skopeo
       runAfter:
         - build-image-buildah
@@ -87,16 +99,14 @@ spec:
       params:
         - name: srcImageURL
           value: >-
-            docker://image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains@$(tasks.build-image-buildah.results.IMAGE_DIGEST)
+            docker://$(params.registry-base-url)$(params.app-name)@$(tasks.build-image-buildah.results.IMAGE_DIGEST)
         - name: destImageURL
           value: >-
-            docker://image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains:dev
+            docker://$(params.registry-base-url)$(params.app-name):dev
         - name: srcTLSverify
           value: 'false'
         - name: destTLSverify
           value: 'false'
       workspaces:
         - name: images-url
-          workspace: rest-villains-workspace
-  workspaces:
-    - name: rest-villains-workspace
+          workspace: pipeline-workspace

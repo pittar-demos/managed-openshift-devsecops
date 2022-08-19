@@ -28,7 +28,7 @@ spec:
         name: git-clone
       workspaces:
         - name: output
-          workspace: ui-pipeline-workspace
+          workspace: pipeline-workspace
     - name: build-image-buildah
       params:
         - name: IMAGE
@@ -53,7 +53,7 @@ spec:
         name: buildah-1-7-0
       workspaces:
         - name: source
-          workspace: ui-pipeline-workspace
+          workspace: pipeline-workspace
     - name: tag-dev-skopeo
       runAfter:
         - build-image-buildah
@@ -73,6 +73,6 @@ spec:
           value: 'false'
       workspaces:
         - name: images-url
-          workspace: ui-pipeline-workspace
+          workspace: pipeline-workspace
   workspaces:
-    - name: ui-pipeline-workspace
+    - name: pipeline-workspace
