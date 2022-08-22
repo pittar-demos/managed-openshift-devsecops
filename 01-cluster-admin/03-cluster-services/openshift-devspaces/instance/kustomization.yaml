@@ -7,5 +7,5 @@ commonAnnotations:
   argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
   argocd.argoproj.io/sync-wave: "20"
 
-bases:
-  - github.com/redhat-cop/gitops-catalog/openshift-dev-spaces/instance/overlays/default?ref=main
+resources:
+  - checluster.yaml
