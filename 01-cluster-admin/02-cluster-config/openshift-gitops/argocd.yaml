@@ -39,6 +39,28 @@ spec:
         hs.status = "Progressing"
         hs.message = "Waiting for certificate"
         return hs
+    gpte.opentlc.com/Gitea:
+      health.lua: |
+        hs = {}
+        if obj.status ~= nil then
+          if obj.status.userSetupComplete ~= nil then
+            if obj.status.userSetupComplete == false then
+              hs.status = "Progressing"
+              hs.message = "Gitea is not yet deployed or configured."
+              return hs
+            end
+          end
+          if obj.status.userSetupComplete ~= nil then
+            if obj.status.userSetupComplete == true then
+              hs.status = "Healthy"
+              hs.message = "Gitea has been deployed and configured."
+              return hs
+            end
+          end
+        end
+        hs.status = "Progressing"
+        hs.message = "Waiting for Gitea do deploy."
+        return hs
   resourceExclusions: |
     - apiGroups:
       - tekton.dev
