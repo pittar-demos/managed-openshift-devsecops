@@ -25,15 +25,7 @@ oc login # As a cluster admin
 # Deploy OpenShift GitOps Operator.
 oc apply -k https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/overlays/gitops-1.6
 
-# Once OpenShift GitOps is deployed, patch the config to enable Dex and Edge Termintad route.
-oc patch argocd openshift-gitops -n openshift-gitops \
-  --type='merge' \
-  --patch-file 00-setup/argocd-extended-config-patch.yaml 
-```
-
-In a moment, you will have your first instance of OpenShift GitOps (Argo CD) running in the `openshift-gitops` namespace.  You should also see a new link for "OpenShift GitOps" in the links menu of the OpenShift UI (the little "grid" icon near the top-right of the screen).
-
-You can click on that link and login with your cluster admin credentials now if you like, but you don't need to quite yet if you're itching to deploy more stuff!
+In a moment, you will have your first instance of OpenShift GitOps (Argo CD) running in the `openshift-gitops` namespace.  You should also see a new link for "OpenShift GitOps" in the links menu of the OpenShift UI (the little "grid" icon near the top-right of the screen).  Don't login quite yet, though... there is a bit more config to do first.
 
 ### Deploy an "App of Apps" for Cluster Config
 
