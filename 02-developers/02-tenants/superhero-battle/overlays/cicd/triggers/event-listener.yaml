@@ -1,0 +1,12 @@
+apiVersion: triggers.tekton.dev/v1beta1 
+kind: EventListener 
+metadata:
+  name: superhero-builds 
+spec:
+  serviceAccountName: pipeline 
+  triggers:
+    - name: superhero-builds-webhook
+      bindings:
+        - ref: battle-ui-trigger-binding
+      template:
+        ref: battle-ui-pipeline-trigger
