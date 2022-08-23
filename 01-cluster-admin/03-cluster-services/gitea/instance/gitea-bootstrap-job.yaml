@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gitea-bootstrap
+  annotations:
+    argocd.argoproj.io/sync-wave: "29"
+    argocd.argoproj.io/hook: PostSync
+spec:
+  template:
+    spec:
+      containers:
+        - name: bootstrap-gitea
+          image: quay.io/pittar/gitea-demo-config:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: gitea-demo-config
+      restartPolicy: Never

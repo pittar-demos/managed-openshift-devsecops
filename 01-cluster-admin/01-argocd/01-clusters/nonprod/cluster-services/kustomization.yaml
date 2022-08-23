@@ -7,6 +7,8 @@ bases:
   - ../../../03-cluster-services/apicurio-registry-operator
   - ../../../03-cluster-services/strimzi-operator
   - ../../../03-cluster-services/openshift-devspaces
+  - ../../../03-cluster-services/gitea/operator
+  - ../../../03-cluster-services/gitea/instance
 #  - ../../../03-cluster-services/06-workload-monitoring
 #  - ../../../03-cluster-services/07-compliance
 

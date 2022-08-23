@@ -1,0 +1,24 @@
+apiVersion: gpte.opentlc.com/v1
+kind: Gitea
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "21"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  name: gitea
+spec:
+  giteaUserNumber: 1
+  giteaGenerateUserFormat: "developer"
+  giteaMigrateRepositories: true
+  giteaVolumeSize: 4Gi
+  giteaAdminUser: gitea-admin
+  giteaImageTag: 1.17
+  postgresqlVolumeSize: 4Gi
+  giteaUserPassword: openshift
+  giteaAdminEmail: opentlc-mgr@redhat.com
+  giteaAdminPassword: openshift
+  giteaCreateUsers: true
+  giteaSsl: true
+  giteaRepositoriesList:
+    - name: spring-petclinic
+      private: false
+      repo: 'https://github.com/pittar-demos/spring-petclinic'
