@@ -5,7 +5,7 @@ metadata:
   namespace: openshift-devspaces
 spec:
   components:
-    server:
+    cheServer:
       debug: false
       logLevel: INFO
     database:
