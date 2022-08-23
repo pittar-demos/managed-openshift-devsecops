@@ -19,6 +19,6 @@ spec:
   giteaCreateUsers: true
   giteaSsl: true
   giteaRepositoriesList:
-    - name: spring-petclinic
+    - name: quarkus-super-heroes
       private: false
-      repo: 'https://github.com/pittar-demos/spring-petclinic'
+      repo: 'https://github.com/pittar-sandbox/quarkus-super-heroes.git'

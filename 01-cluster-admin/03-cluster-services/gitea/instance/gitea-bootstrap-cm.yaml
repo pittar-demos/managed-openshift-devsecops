@@ -6,5 +6,5 @@ metadata:
   name: gitea-demo-config
 data:
   DEVELOPER_USERNAME: developer
-  REPO_NAME: spring-petclinic
-  CICD_NAMESPACE: petclinic-cicd
+  REPO_NAME: quarkus-super-heroes
+  CICD_NAMESPACE: superhero-battle-cicd
