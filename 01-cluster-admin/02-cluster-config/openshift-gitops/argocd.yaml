@@ -75,7 +75,7 @@ spec:
       - ComplianceCheckResult
       - ComplianceRemediation
   rbac:
-    defaultPolicy: role:readonly
+    defaultPolicy: role:admin
     policy: |
       g, openshift-gitops-admins, role:admin
     scopes: "[groups]"
