@@ -28,3 +28,6 @@ images:
   - name: event-statistics
     newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/event-statistics
     newTag: latest
+  - name: battle-ui
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui
+    newTag: latest
