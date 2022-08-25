@@ -4,6 +4,8 @@ metadata:
   name: devspaces
   namespace: openshift-devspaces
 spec:
+  server:
+    workspaceDefaultEditor: che-incubator/che-code/insiders
   components:
     cheServer:
       debug: false

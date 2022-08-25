@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: compliance-reportbuilder-role
+rules:
+  - apiGroups:
+    - compliance.openshift.io
+    resources:
+      - '*'
+    verbs:
+      - '*'
+  - apiGroups:
+    - ''
+    resources:
+      - 'pods'
+    verbs:
+      - 'create'
+      - 'delete'
+  - apiGroups:
+    - ''
+    resources:
+      - 'pods/exec'
+    verbs:
+      - '*'

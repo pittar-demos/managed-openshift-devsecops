@@ -1,0 +1,57 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: compliance-report-builder
+spec:
+  params:
+    - default: 'ocp4-moderate-compliance,rhcos4-moderate-compliance'
+      description: List of ScanSettingBindings to build reports for.
+      name: scb-names
+      type: string
+  steps:
+    - image: 'quay.io/pittar/oc-compliance:latest'
+      name: compliance-toolbox
+      resources: {}
+      script: |
+        #!/usr/bin/env bash
+        set +x
+        export NO_COLOR="True"
+
+        SCBNAMES="$(params.scb-names)"
+        # echo "$SCBNAMES"
+
+        SCBNAMES=(${SCBNAMES//,/ })
+
+        for scb in "${SCBNAMES[@]}"; do
+          rm -rf $(workspaces.reports.path)/$scb
+          oc compliance \
+            fetch-raw \
+            scansettingbindings \
+            $scb \
+            -n openshift-compliance -o $(workspaces.reports.path)
+        done
+
+        build-reports.sh $(workspaces.reports.path)
+
+        ls -la
+
+        cat compliance-view/templates/start.html > index.html
+
+        count=0
+        for filename in html/*.html; do
+            ((count=count + 1))
+            if [ -f "$filename" ]; then
+                echo "Filename: $filename"
+                htmlfilename=$(echo $filename | sed 's/\///g' | sed "s/html//")
+                echo "Generating $htmlfilename"
+                title=${htmlfilename%.*}
+                profilename=${htmlfilename%-*}
+                description=$(oc get profile.compliance.openshift.io ocp4-moderate -o jsonpath={.title} -n openshift-compliance)
+                echo "<li><a href='"$htmlfilename"'><h2>$title</h2><p>$description</p></a></li>" >> index.html
+            fi
+        done
+
+        cat compliance-view/templates/end.html >> index.html
+      workingDir: $(workspaces.reports.path)
+  workspaces:
+    - name: reports
