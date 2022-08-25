@@ -8,7 +8,6 @@ spec:
     cheServer:
       debug: false
       logLevel: INFO
-      workspaceDefaultEditor: che-incubator/che-code/insiders
     database:
       credentialsSecretName: postgres-credentials
       externalDb: false
