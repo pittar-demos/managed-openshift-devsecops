@@ -3,13 +3,12 @@ kind: CheCluster
 metadata:
   name: devspaces
   namespace: openshift-devspaces
-spec:
-  server:
-    workspaceDefaultEditor: che-incubator/che-code/insiders
+spec:    
   components:
     cheServer:
       debug: false
       logLevel: INFO
+      workspaceDefaultEditor: che-incubator/che-code/insiders
     database:
       credentialsSecretName: postgres-credentials
       externalDb: false
