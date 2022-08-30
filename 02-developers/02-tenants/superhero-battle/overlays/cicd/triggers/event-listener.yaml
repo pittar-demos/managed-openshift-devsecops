@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1 
 kind: EventListener 
 metadata:
-  name: superhero-builds 
+  name: build-listener 
 spec:
   serviceAccountName: pipeline 
   triggers:

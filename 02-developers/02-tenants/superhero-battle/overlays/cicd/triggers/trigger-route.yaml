@@ -11,5 +11,5 @@ spec:
     targetPort: http-listener
   to:
     kind: Service
-    name: el-superhero-builds
+    name: el-build-listener
     weight: 100
