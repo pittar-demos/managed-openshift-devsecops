@@ -5,7 +5,6 @@ namespace: superhero-battle-cicd
 
 bases:
   - ../../../base/cicd/node-pipeline
-  - ../../../base/cicd/trigger-template
 
 patches:
   - target:
