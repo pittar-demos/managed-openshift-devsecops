@@ -15,7 +15,7 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: rest-villains-workspace
+        value: battle-rest-villains-workspace
   - target:
       group: tekton.dev
       version: v1beta1
@@ -24,4 +24,4 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: rest-villains-pipeline
+        value: battle-rest-villains-pipeline

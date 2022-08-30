@@ -7,6 +7,6 @@ spec:
   triggers:
     - name: superhero-builds-webhook
       bindings:
-        - ref: battle-ui-trigger-binding
+        - ref: battle-trigger-binding
       template:
-        ref: battle-ui-pipeline-trigger
+        ref: battle-pipeline-trigger

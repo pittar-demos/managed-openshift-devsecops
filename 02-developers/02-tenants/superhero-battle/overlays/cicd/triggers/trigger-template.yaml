@@ -1,7 +1,7 @@
 apiVersion: triggers.tekton.dev/v1beta1 
 kind: TriggerTemplate 
 metadata:
-  name: battle-ui-pipeline-trigger 
+  name: battle-pipeline-trigger 
 spec:
   params: 
     - name: git-repo-url
@@ -18,14 +18,14 @@ spec:
         annotations:
           argocd.argoproj.io/compare-options: IgnoreExtraneous
           argocd.argoproj.io/sync-options: Prune=false
-        generateName: battle-ui-pipeline-run-
+        generateName: $(tt.params.git-repo-name)-pipeline-run-
       spec:
         serviceAccountName: pipeline
         pipelineRef:
-          name: ui-pipeline
+          name: $(tt.params.git-repo-name)-pipeline
         params:
           - name: app-name
-            value: battle-ui
+            value: $(tt.params.git-repo-name)
           - name: git-url
             value: $(tt.params.git-repo-url)
           - name: git-revision
@@ -33,4 +33,4 @@ spec:
         workspaces:
           - name: pipeline-workspace
             persistentVolumeClaim:
-              claimName: battle-ui-workspace
+              claimName: $(tt.params.git-repo-name)-workspace

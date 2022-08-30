@@ -15,7 +15,7 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: event-statistics-workspace
+        value: battle-event-statistics-workspace
   - target:
       group: tekton.dev
       version: v1beta1
@@ -24,4 +24,4 @@ patches:
     patch: |-
       - op: replace
         path: /metadata/name
-        value: event-statistics-pipeline
+        value: battle-event-statistics-pipeline
