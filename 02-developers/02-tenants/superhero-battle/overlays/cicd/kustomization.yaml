@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: superhero-battle-cicd
 
 bases:
-  - battle-ui-pipeline
+  #- battle-ui-pipeline
   - event-statistics-pipeline
   - rest-fights-pipeline
   - rest-heroes-pipeline
