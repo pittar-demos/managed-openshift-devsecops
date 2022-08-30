@@ -11,7 +11,7 @@ spec:
   giteaMigrateRepositories: true
   giteaVolumeSize: 4Gi
   giteaAdminUser: gitea-admin
-  giteaImageTag: "1.17"
+  giteaImageTag: "1.15.10"
   postgresqlVolumeSize: 4Gi
   giteaUserPassword: openshift
   giteaAdminEmail: opentlc-mgr@redhat.com
