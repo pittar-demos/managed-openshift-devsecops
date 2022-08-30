@@ -3,6 +3,14 @@ kind: Kustomization
 
 namespace: superhero-battle-cicd
 
+bases:
+  - battle-ui-pipeline
+  - event-statistics-pipeline
+  - rest-fights-pipeline
+  - rest-heroes-pipeline
+  - rest-villains-pipeline
+  - triggers
+
 resources:
   - battle-ui-pipeline.yaml
   - battle-ui-workspace-pvc.yaml

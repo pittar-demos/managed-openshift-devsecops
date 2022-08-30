@@ -1,0 +1,27 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: superhero-battle-cicd
+
+bases:
+  - ../../../base/cicd/node-pipeline
+
+patches:
+  - target:
+      group: ''
+      version: v1
+      kind: PersistentVolumeClaim
+      name: node-workspace
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: battle-ui-workspace
+  - target:
+      group: tekton.dev
+      version: v1beta1
+      kind: Pipeline
+      name: node-pipeline
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: battle-ui-pipeline

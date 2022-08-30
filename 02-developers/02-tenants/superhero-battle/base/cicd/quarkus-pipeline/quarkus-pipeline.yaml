@@ -1,0 +1,107 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: quarkus-pipeline
+spec:
+  workspaces:
+    - name: pipeline-workspace
+  params:
+    - name: app-name
+      type: string
+      description: Name of the application image.
+    - name: git-url
+      type: string
+      description: Git repository URL.
+    - name: git-revision
+      type: string
+      description: Git branch or tag.
+      default: "main"
+    - name: registry-base-url
+      type: string
+      description: Base image registry url.
+      default: "image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/"
+  tasks:
+    - name: git-clone
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)
+        - name: submodules
+          value: 'true'
+        - name: depth
+          value: '1'
+        - name: sslVerify
+          value: 'true'
+        - name: deleteExisting
+          value: 'true'
+        - name: verbose
+          value: 'true'
+        - name: userHome
+          value: /tekton/home
+      taskRef:
+        kind: ClusterTask
+        name: git-clone-1-7-0
+      workspaces:
+        - name: output
+          workspace: pipeline-workspace
+    - name: maven-1-7-0
+      params:
+        - name: GOALS
+          value:
+            - package
+            - '-DskipTests'
+        - name: PROXY_PROTOCOL
+          value: http
+      runAfter:
+        - git-clone
+      taskRef:
+        kind: ClusterTask
+        name: maven-1-7-0
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+        - name: maven-settings
+          workspace: pipeline-workspace
+    - name: build-image-buildah
+      params:
+        - name: IMAGE
+          value: $(params.registry-base-url)$(params.app-name):latest
+        - name: STORAGE_DRIVER
+          value: vfs
+        - name: DOCKERFILE
+          value: ./Containerfile
+        - name: CONTEXT
+          value: rest-villains
+        - name: TLSVERIFY
+          value: 'true'
+        - name: FORMAT
+          value: oci
+      runAfter:
+        - maven-1-7-0
+      taskRef:
+        kind: ClusterTask
+        name: buildah-1-7-0
+      workspaces:
+        - name: source
+          workspace: pipeline-workspace
+    - name: tag-dev-skopeo
+      runAfter:
+        - build-image-buildah
+      taskRef:
+        kind: ClusterTask
+        name: skopeo-copy-1-7-0
+      params:
+        - name: srcImageURL
+          value: >-
+            docker://$(params.registry-base-url)$(params.app-name)@$(tasks.build-image-buildah.results.IMAGE_DIGEST)
+        - name: destImageURL
+          value: >-
+            docker://$(params.registry-base-url)$(params.app-name):dev
+        - name: srcTLSverify
+          value: 'false'
+        - name: destTLSverify
+          value: 'false'
+      workspaces:
+        - name: images-url
+          workspace: pipeline-workspace
