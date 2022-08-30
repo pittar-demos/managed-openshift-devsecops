@@ -17,17 +17,17 @@ bases:
 
 images:
   - name: fights
-    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-fights
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/battle-rest-fights
     newTag: dev
   - name: villains
-    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-villains
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/battle-rest-villains
     newTag: dev
   - name: heroes
-    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/rest-heroes
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/battle-rest-heroes
     newTag: dev
   - name: event-statistics
-    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/event-statistics
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/battle-event-statistics
     newTag: dev
   - name: battle-ui
-    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/ui
+    newName: image-registry.openshift-image-registry.svc:5000/superhero-battle-cicd/battle-ui
     newTag: dev
