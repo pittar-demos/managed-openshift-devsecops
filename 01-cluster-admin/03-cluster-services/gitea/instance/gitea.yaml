@@ -19,6 +19,18 @@ spec:
   giteaCreateUsers: true
   giteaSsl: true
   giteaRepositoriesList:
-    - name: quarkus-super-heroes
+    - name: battle-rest-heroes
       private: false
-      repo: 'https://github.com/pittar-sandbox/quarkus-super-heroes.git'
+      repo: 'https://github.com/pittar-demos/battle-rest-heroes.git'
+    - name: battle-rest-villains
+      private: false
+      repo: 'https://github.com/pittar-demos/battle-rest-villains.git'
+    - name: battle-rest-fights
+      private: false
+      repo: 'https://github.com/pittar-demos/battle-rest-fights.git'
+    - name: battle-event-statistics
+      private: false
+      repo: 'https://github.com/pittar-demos/battle-event-statistics.git'
+    - name: battle-ui
+      private: false
+      repo: 'https://github.com/pittar-demos/battle-ui.git'

@@ -4,13 +4,12 @@ metadata:
   name: gitea-bootstrap
   annotations:
     argocd.argoproj.io/sync-wave: "29"
-    #argocd.argoproj.io/hook: PostSync
 spec:
   template:
     spec:
       containers:
         - name: bootstrap-gitea
-          image: quay.io/pittar/gitea-demo-config:latest
+          image: quay.io/pittar/gitea-demo-config:gitea-init-multirepo
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
