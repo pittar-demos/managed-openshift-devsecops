@@ -1,0 +1,8 @@
+apiVersion: console.openshift.io/v1
+kind: ConsoleLink
+metadata:
+  name: battle-devspace2
+spec:
+  location: ApplicationMenu
+  text: Battle DevSpace
+  href: https://devspaces.apps.cluster-n5vpp.n5vpp.sandbox1258.opentlc.com#http://gitea.scm.svc.cluster.local:3000/developer/battle-rest-heroes/raw/branch/main/devfile.yaml
