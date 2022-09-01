@@ -1,10 +1,10 @@
 apiVersion: console.openshift.io/v1
 kind: ConsoleLink
 metadata:
-  name: devspace-battle
+  name: scm-gitea
 spec:
   applicationMenu:
     section: Developer Tools
     imageUrl: https://github.com/pittar-demos/rosa-devops/raw/main/images/devspaces.png
   location: ApplicationMenu
-  text: Battle DevSpace
+  text: SCM - Gitea

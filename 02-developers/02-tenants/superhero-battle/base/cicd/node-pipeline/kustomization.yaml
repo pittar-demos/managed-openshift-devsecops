@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - node-workspace-pvc.yaml
   - node-pipeline.yaml
+  - initial-run.yaml

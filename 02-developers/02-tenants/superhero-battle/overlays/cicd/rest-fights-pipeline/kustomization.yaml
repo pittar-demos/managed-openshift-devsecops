@@ -25,3 +25,31 @@ patches:
       - op: replace
         path: /metadata/name
         value: battle-rest-fights-pipeline
+  - target:
+      group: tekton.dev
+      version: v1beta1
+      kind: PipelineRun
+      name: initial-run
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: battle-rest-fights-pipeline-initial-run
+      - op: replace
+        path: /spec/pipelineRef/name
+        value: battle-rest-fights-pipeline
+      - op: add
+        path: /spec/params/-
+        value:
+          name: app-name
+          value: battle-rest-fights
+      - op: add
+        path: /spec/params/-
+        value:
+          name: git-url
+          value: http://gitea.scm.svc.cluster.local:3000/developer/battle-rest-fights.git
+      - op: add
+        path: /spec/workspaces/-
+        value:
+          name: shared-workspace
+          persistentVolumeClaim:
+            claimName: battle-rest-fights-workspace

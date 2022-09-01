@@ -1,0 +1,16 @@
+apiVersion: rds.services.k8s.aws/v1alpha1
+kind: DBInstance
+metadata:
+  name: pgtest
+  namespace: ack-test
+spec:
+  allocatedStorage: 20
+  dbInstanceClass: db.t4g.micro
+  dbInstanceIdentifier: pgtest
+  engine: postgres
+  engineVersion: "14"
+  masterUsername: "postgres"
+  masterUserPassword:
+    namespace: ack-test
+    name: pgtest-password
+    key: password

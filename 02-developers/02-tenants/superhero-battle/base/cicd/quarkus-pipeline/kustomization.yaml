@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - quarkus-workspace-pvc.yaml
   - quarkus-pipeline.yaml
+  - initial-run.yaml

@@ -1,0 +1,9 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: initial-run
+spec:
+  params: []
+  pipelineRef:
+    name: patchme
+  workspaces: []
