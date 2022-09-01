@@ -50,6 +50,6 @@ patches:
       - op: add
         path: /spec/workspaces/-
         value:
-          name: shared-workspace
+          name: pipeline-workspace
           persistentVolumeClaim:
             claimName: battle-event-statistics-workspace
