@@ -1,6 +1,8 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
   name: node-pipeline
 spec:
   workspaces:

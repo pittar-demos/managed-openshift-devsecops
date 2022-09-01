@@ -1,6 +1,8 @@
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
   name: initial-run
 spec:
   params: []
