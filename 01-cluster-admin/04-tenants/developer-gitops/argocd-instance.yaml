@@ -46,7 +46,7 @@ spec:
       - '*'
       kinds:
       - TaskRun
-      - PipelineRun
+      #- PipelineRun
     - apiGroups:
       - compliance.openshift.io
       kinds:
