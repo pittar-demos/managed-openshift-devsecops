@@ -7,9 +7,20 @@ namespace: cicd-tools
 # Deploy pre-configured SonarQube and Nexus from Red Hat Canada demo catalog.
 bases:
   - github.com/redhat-cop/gitops-catalog/nexus2/base?ref=main
-  - github.com/redhat-cop/gitops-catalog/sonarqube8/overlays/plugins?ref=main
+  - github.com/redhat-cop/gitops-catalog/sonarqube8/base?ref=main
+
+resources:
+  - sonarqube-admin-secret.yaml
+  - configure-sonarqube-job.yaml
 
 patches:
+  - target:
+      kind: Deployment
+      name: sonarqube
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: sonarqube:lts-community
   - target:
       group: route.openshift.io
       version: v1
