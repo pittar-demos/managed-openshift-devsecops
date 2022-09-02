@@ -53,6 +53,7 @@ spec:
           value:
             - package
             - sonar:sonar
+            - '-Dsonar.host.url=http://sonarqube.cicd-tools.svc.cluster.local:9000'
             - '-DskipTests'
         - name: PROXY_PROTOCOL
           value: http
