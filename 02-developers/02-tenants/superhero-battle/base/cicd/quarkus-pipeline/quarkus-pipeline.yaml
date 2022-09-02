@@ -52,6 +52,7 @@ spec:
         - name: GOALS
           value:
             - package
+            - sonar:sonar
             - '-DskipTests'
         - name: PROXY_PROTOCOL
           value: http
