@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: CI/CD Tools
+    openshift.io/display-name: Shared CI/CD Tooling
+  labels:
+    argocd.argoproj.io/managed-by: developer-gitops
+  name: cicd-tools

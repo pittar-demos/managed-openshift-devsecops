@@ -1,0 +1,204 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: welcome-app-pipeline
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  params:
+  - name: GIT_REPO
+    type: string
+    description: the clonable repo source e.g.  https://github.com/tektoncd/pipeline.git
+  - name: GIT_REF
+    type: string
+    description: git revision to checkout (branch, tag, sha, ref…)
+  - name: IMAGE_DEST
+    type: string
+    description: Base image repo url
+  - name: SRC_DOCKERFILE
+    type: string
+    description: path to the dockerfile to use
+  - name: DEPLOY_REPO
+    type: string
+    description: The git repo where the deployment manifests are
+  - name: DEPLOY_REF
+    type: string
+    description: git revision to checkout from the deployment repo (branch, tag, sha, ref…)
+  - name: DEV_OVERLAY_DIR
+    type: string
+    description: the directory where the dev overlay is
+  - name: PROD_OVERLAY_DIR
+    type: string
+    description: the directory where the prod overlay is
+  tasks:
+  - name: clone-repo
+    params:
+    - name: url
+      value: $(params.GIT_REPO)
+    - name: revision
+      value: $(params.GIT_REF)
+    taskRef:
+      name: git-clone
+      kind: ClusterTask
+    workspaces:
+    - name: output
+      workspace: welcome-app-ws1
+  - name: set-image-tag
+    params:
+      - name: commit
+        value: $(tasks.clone-repo.results.commit)
+      - name: url
+        value: $(tasks.clone-repo.results.url)
+      - name: imagestream
+        value: $(params.IMAGE_DEST)
+    taskRef:
+      name: set-tag
+    runAfter:
+      - clone-repo
+    workspaces:
+    - name: tagput
+      workspace: welcome-app-ws1
+  - name: build-n-push
+    params:
+      - name: IMAGE
+        value: $(tasks.set-image-tag.results.tag)
+      - name: DOCKERFILE
+        value: $(workspaces.source.path)/$(params.SRC_DOCKERFILE)
+      - name: CONTEXT
+        value: $(workspaces.source.path)
+    taskRef:
+      name: buildah
+      kind: ClusterTask
+    runAfter:
+      - set-image-tag
+    workspaces:
+    - name: source
+      workspace: welcome-app-ws1
+  - name: tag-to-latest
+    params:
+      - name: srcImageURL
+        value: docker://$(tasks.set-image-tag.results.tag)
+      - name: destImageURL
+        value: docker://$(params.IMAGE_DEST):latest
+    taskRef:
+      name: skopeo-copy
+      kind: ClusterTask
+    runAfter:
+      - build-n-push
+    workspaces:
+    - name: images-url
+      workspace: welcome-app-ws1
+  - name: clone-deploy-repo
+    params:
+    - name: url
+      value: $(params.DEPLOY_REPO)
+    - name: revision
+      value: $(params.DEPLOY_REF)
+    taskRef:
+      name: git-clone
+      kind: ClusterTask
+    runAfter:
+      - build-n-push
+    workspaces:
+    - name: output
+      workspace: welcome-app-ws1
+  - name: patch-dev
+    taskRef:
+      name: kustomize
+    params:
+      - name: imagestream
+        value: $(tasks.set-image-tag.results.tag)
+      - name: overlaypath
+        value: app/overlays/$(params.DEV_OVERLAY_DIR)
+    runAfter:
+      - clone-deploy-repo
+      - tag-to-latest
+    workspaces:
+      - name: source
+        workspace: welcome-app-ws1
+  - name: commit-to-dev
+    params:
+    - name: GIT_USER_NAME
+      value: developer
+    - name: GIT_USER_EMAIL
+      value: developer@example.com
+    - name: GIT_SCRIPT
+      value: |
+        git add -A .
+        git commit -am "Run $(tasks.set-image-tag.results.tagref): Updating image to $(tasks.set-image-tag.results.tag) on $(params.DEV_OVERLAY_DIR)"
+        git push origin HEAD:main
+    taskRef:
+      name: git-cli
+      kind: ClusterTask
+    runAfter:
+      - patch-dev
+    workspaces:
+    - name: source
+      workspace: welcome-app-ws1
+    - name: input
+      workspace: scratch
+  - name: patch-prod
+    taskRef:
+      name: kustomize
+    params:
+      - name: imagestream
+        value: $(tasks.set-image-tag.results.tag)
+      - name: overlaypath
+        value: app/overlays/$(params.PROD_OVERLAY_DIR)
+    runAfter:
+      - commit-to-dev
+    workspaces:
+      - name: source
+        workspace: welcome-app-ws1
+  - name: branch-to-prod
+    params:
+    - name: GIT_USER_NAME
+      value: developer
+    - name: GIT_USER_EMAIL
+      value: developer@example.com
+    - name: GIT_SCRIPT
+      value: |
+        git checkout -b $(tasks.set-image-tag.results.tagref)
+        git add -A .
+        git commit -am "Run $(tasks.set-image-tag.results.tagref): Updating image to $(tasks.set-image-tag.results.tag) on $(params.PROD_OVERLAY_DIR)"
+        git push origin HEAD:$(tasks.set-image-tag.results.tagref)
+    taskRef:
+      name: git-cli
+      kind: ClusterTask
+    runAfter:
+      - patch-prod
+    workspaces:
+    - name: source
+      workspace: welcome-app-ws1
+    - name: input
+      workspace: scratch
+  - name: pr-to-prod
+    params:
+    - name: username
+      value: developer
+    - name: password
+      value: openshift
+    - name: email
+      value: developer@example.com
+    - name: giteasrv
+      value: http://gitea.scm.svc.cluster.local:3000
+    - name: title
+      value: Updating image to $(tasks.set-image-tag.results.tag)
+    - name: gitref
+      value: $(params.GIT_REF)
+    - name: tagref
+      value: $(tasks.set-image-tag.results.tagref)
+    - name: body
+      value: Updating image to $(tasks.set-image-tag.results.tag) on $(params.PROD_OVERLAY_DIR)
+    taskRef:
+      name: task-create-pr
+    runAfter:
+      - branch-to-prod
+    workspaces:
+    - name: source
+      workspace: welcome-app-ws1
+  workspaces:
+  - description: This workspace for this pipeline
+    name: welcome-app-ws1
+  - description: This is a scratch disk
+    name: scratch

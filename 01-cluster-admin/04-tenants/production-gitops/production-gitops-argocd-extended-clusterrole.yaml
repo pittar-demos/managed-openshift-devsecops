@@ -1,0 +1,25 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
+  name: production-gitops-argocd-extended-clusterrole
+rules:
+  - apiGroups:
+    - kafka.strimzi.io
+    resources:
+      - '*'
+    verbs:
+      - '*'
+  - apiGroups:
+    - monitoring.coreos.com
+    resources:
+      - servicemonitors
+    verbs:
+      - '*'
+  - apiGroups:
+    - registry.apicur.io
+    resources:
+      - apicurioregistries
+    verbs:
+      - '*'

@@ -1,0 +1,53 @@
+apiVersion: tekton.dev/v1beta1
+kind: ClusterTask
+metadata:
+  name: gitea-create-pr
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  params:
+    - name: title
+      type: string
+      description: PR Title
+    - name: body
+      type: string
+      default: ""
+      description: The body of the PR request
+    - name: password
+      type: string
+      default: ""
+      description: password for tea cli
+    - name: username
+      type: string
+      default: ""
+      description: Gitea username
+    - name: email
+      type: string
+      default: ""
+      description: Gitea Email
+    - name: giteasrv
+      type: string
+      default: ""
+      description: Gitea server instance
+    - name: gitref
+      type: string
+      default: ""
+      description: Gitea branch to pr to
+    - name: tagref
+      type: string
+      default: ""
+      description: Gitea branch to pr from
+  steps:
+    - name: run-tea-cli
+      image: quay.io/redhatworkshops/gitea-cli:latest
+      workingDir: $(workspaces.source.path)
+      env:
+        - name: GITHUB_USER
+          value: $(params.username)
+        - name: GITHUB_EMAIL
+          value: $(params.email)
+      script: |
+        #!/usr/bin/env bash
+        curl -s --header "Content-Type: application/json" -u "$(params.username)":"$(params.password)" --request POST -d "{\"title\": \"$(params.title)\", \"head\": \"$(params.tagref)\", \"base\":\"$(params.gitref)\", \"body\": \"$(params.body)\"}" "$(params.giteasrv)"/api/v1/repos/developer/welcome-deploy/pulls
+  workspaces:
+    - name: source

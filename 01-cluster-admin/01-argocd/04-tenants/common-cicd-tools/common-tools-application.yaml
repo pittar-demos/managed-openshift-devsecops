@@ -5,14 +5,14 @@ metadata:
     argocd.argoproj.io/sync-wave: "41"
   labels:
     gitops.ownedBy: openshift-gitops
-  name: common-tools-tenant-namespaces
+  name: common-tools-tenant-namespace
 spec:
   destination:
     namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: tenants
   source:
-    path: tenants/common-tools
+    path: 01-cluster-admin/04-tenants/common-cicd-tools
     repoURL: https://github.com/pittar-demos/rosa-devops.git
     targetRevision: main
   syncPolicy:
