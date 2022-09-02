@@ -55,6 +55,8 @@ spec:
             - '-DskipTests'
         - name: PROXY_PROTOCOL
           value: http
+        - name: MAVEN_MIRROR_URL
+          value: 'http://nexus.cicd-tools.svc.cluster.local:8081/content/groups/public'
       runAfter:
         - git-clone
       taskRef:
