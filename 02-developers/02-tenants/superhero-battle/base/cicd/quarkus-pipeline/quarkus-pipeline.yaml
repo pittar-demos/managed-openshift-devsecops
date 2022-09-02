@@ -52,7 +52,7 @@ spec:
         - name: GOALS
           value:
             - clean
-            - install
+            - verify
             - sonar:sonar
             - '-Dsonar.host.url=http://sonarqube.cicd-tools.svc.cluster.local:9000'
             - '-DskipTests'
