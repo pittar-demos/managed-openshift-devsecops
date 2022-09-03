@@ -11,4 +11,4 @@ bases:
   - github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/pipelines-1.8?ref=main
 
 resources:
-  - chain.yaml
+  - chains.yaml
