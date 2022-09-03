@@ -63,7 +63,7 @@ spec:
         - git-clone
       taskRef:
         kind: ClusterTask
-        name: buildah-1-7-0
+        name: buildah
       workspaces:
         - name: source
           workspace: pipeline-workspace
@@ -72,7 +72,7 @@ spec:
         - build-image-buildah
       taskRef:
         kind: ClusterTask
-        name: skopeo-copy-1-7-0
+        name: skopeo-copy
       params:
         - name: srcImageURL
           value: >-
