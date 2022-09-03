@@ -2,7 +2,6 @@ kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 
 bases:
-  - ../../../04-tenants/common-cicd-tools
   - ../../../04-tenants/developer-gitops
   - ../../../04-tenants/superhero-battle/cicd
   - ../../../04-tenants/superhero-battle/dev
