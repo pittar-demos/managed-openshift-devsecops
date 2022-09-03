@@ -43,11 +43,11 @@ spec:
           value: /tekton/home
       taskRef:
         kind: ClusterTask
-        name: git-clone-1-7-0
+        name: git-clone-1-8-0
       workspaces:
         - name: output
           workspace: pipeline-workspace
-    - name: maven-1-7-0
+    - name: maven
       params:
         - name: GOALS
           value:
@@ -55,6 +55,7 @@ spec:
             - verify
             - sonar:sonar
             - '-Dsonar.host.url=http://sonarqube.cicd-tools.svc.cluster.local:9000'
+            - '-Pquality'
             - '-DskipTests'
         - name: PROXY_PROTOCOL
           value: http
@@ -64,7 +65,7 @@ spec:
         - git-clone
       taskRef:
         kind: ClusterTask
-        name: maven-1-7-0
+        name: maven-1-8-0
       workspaces:
         - name: source
           workspace: pipeline-workspace
@@ -85,10 +86,10 @@ spec:
         - name: FORMAT
           value: oci
       runAfter:
-        - maven-1-7-0
+        - maven
       taskRef:
         kind: ClusterTask
-        name: buildah-1-7-0
+        name: buildah-1-8-0
       workspaces:
         - name: source
           workspace: pipeline-workspace
@@ -97,7 +98,7 @@ spec:
         - build-image-buildah
       taskRef:
         kind: ClusterTask
-        name: skopeo-copy-1-7-0
+        name: skopeo-copy-1-8-0
       params:
         - name: srcImageURL
           value: >-
