@@ -1,8 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-resources:
-  - rest-villains-db-config-secret.yaml
-  - rest-villains-db-deploy.yaml
-  - rest-villains-db-init-cm.yaml
-  - rest-villains-db-service.yaml

@@ -1,9 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-
-resources:
-  - rest-heroes-config-cm.yaml
-  - rest-heroes-config-secret.yaml
-  - rest-heroes-deploy.yaml
-  - rest-heroes-route.yaml
-  - rest-heroes-service.yaml
