@@ -5,6 +5,6 @@ metadata:
 spec:
   applicationMenu:
     section: Developer Tools
-    imageUrl: https://github.com/pittar-demos/rosa-devops/raw/main/images/devspaces.png
+    imageUrl: https://github.com/pittar-demos/rosa-devops/raw/main/images/devspaces.svg
   location: ApplicationMenu
   text: SCM - Gitea
