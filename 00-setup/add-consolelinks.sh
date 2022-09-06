@@ -18,8 +18,17 @@ echo "  href: https://nexus-cicd-tools.$apps" \
 echo "  href: https://sonarqube-cicd-tools.$apps" \
   >> console-links/sonarqube.yaml
 
+# Add Dev GitOps link.
+echo "  href: https://argocd-server-developer-gitops..$apps" \
+  >> console-links/developer-gitops.yaml
+
+# Add Prod GitOps link.
+echo "  href: https://argocd-server-production-gitops..$apps" \
+  >> console-links/production-gitops.yaml
 
 oc create -f console-links/battle-devspace.yaml
 oc create -f console-links/scm-gitea.yaml
 oc create -f console-links/nexus.yaml
 oc create -f console-links/sonarqube.yaml
+oc create -f console-links/developer-gitops.yaml
+oc create -f console-links/production-gitops.yaml
