@@ -34,3 +34,6 @@ spec:
     - name: battle-ui
       private: false
       repo: 'https://github.com/pittar-demos/battle-ui.git'
+    - name: battle-developer-gitops
+      private: false
+      repo: 'https://github.com/pittar-demos/battle-developer-gitops.git'

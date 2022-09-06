@@ -1,0 +1,10 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+
+bases:
+  - ../../../02-cluster-config/openshift-gitops
+  - ../../../02-cluster-config/groups-and-membership
+  - ../../../02-cluster-config/cluster-monitoring
+
+resources:
+  - cluster-config-project.yaml
