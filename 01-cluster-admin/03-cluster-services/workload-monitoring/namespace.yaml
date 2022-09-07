@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: Grafana for Workload Monitoring
+    openshift.io/display-name: Workload Monitoring - Grafana
+  name: workload-monitoring
