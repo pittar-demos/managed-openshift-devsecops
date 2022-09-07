@@ -4,7 +4,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 bases:
   - ../../../03-cluster-services/openshift-pipelines
   - ../../../03-cluster-services/web-terminal-operator
-  - ../../../03-cluster-services/apicurio-registry-operator
+#  - ../../../03-cluster-services/apicurio-registry-operator
   - ../../../03-cluster-services/strimzi-operator
   - ../../../03-cluster-services/openshift-devspaces
   - ../../../03-cluster-services/gitea/operator
