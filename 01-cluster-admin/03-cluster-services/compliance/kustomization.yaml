@@ -9,5 +9,5 @@ commonAnnotations:
 
 bases:
   - https://github.com/redhat-cop/gitops-catalog/compliance-operator/operator/overlays/release-0.1?ref=v0.6
-  - https://github.com/pittar/ocp4-compliance-pbmm/manifests?ref=main
-  - https://github.com/pittar/ocp4-compliance-pbmm/compliance-view/mainfests?ref=main
+  #- https://github.com/pittar/ocp4-compliance-pbmm/manifests?ref=main
+  #- https://github.com/pittar/ocp4-compliance-pbmm/compliance-view/mainfests?ref=main
