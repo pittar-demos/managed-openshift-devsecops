@@ -5,7 +5,6 @@ metadata:
     app: grafana
   name: jvm-micrometer-quarkus
 spec:
-  name: server-dashboard.json
   json: |
     {
       "annotations": {
