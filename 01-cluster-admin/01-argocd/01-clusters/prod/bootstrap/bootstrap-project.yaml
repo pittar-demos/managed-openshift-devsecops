@@ -1,7 +1,7 @@
 kind: AppProject
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: prod-cluster-bootstrap
+  name: cluster-bootstrap
   namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:

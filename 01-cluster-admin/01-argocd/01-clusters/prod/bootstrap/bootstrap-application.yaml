@@ -1,7 +1,7 @@
 kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
-  name: prod-cluster-bootstrap
+  name: cluster-bootstrap
 spec:
   destination:
     namespace: openshift-gitops
@@ -9,7 +9,7 @@ spec:
   project: cluster-bootstrap
   source:
     path: 01-cluster-admin/01-argocd/01-clusters/prod
-    repoURL: https://github.com/pittar-demos/rosa-devops.git
+    repoURL: https://github.com/pittar-demos/managed-openshift-devsecops.git
     targetRevision: main
   syncPolicy:
     automated:

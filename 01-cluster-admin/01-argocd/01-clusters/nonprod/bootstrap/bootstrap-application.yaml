@@ -9,7 +9,7 @@ spec:
   project: cluster-bootstrap
   source:
     path: 01-cluster-admin/01-argocd/01-clusters/nonprod
-    repoURL: https://github.com/pittar-demos/rosa-devops.git
+    repoURL: https://github.com/pittar-demos/managed-openshift-devsecops.git
     targetRevision: main
   syncPolicy:
     automated:

@@ -13,7 +13,7 @@ spec:
   project: cluster-services
   source:
     path: 01-cluster-admin/03-cluster-services/openshift-devspaces
-    repoURL: https://github.com/pittar-demos/rosa-devops.git
+    repoURL: https://github.com/pittar-demos/managed-openshift-devsecops.git
     targetRevision: main
   syncPolicy:
     automated:

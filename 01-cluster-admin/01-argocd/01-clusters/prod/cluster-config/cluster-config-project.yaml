@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
-  name: prod-cluster-config
+  name: cluster-config
   namespace: openshift-gitops
 spec:
   clusterResourceWhitelist:

@@ -13,7 +13,7 @@ spec:
   project: tenants
   source:
     path: 01-cluster-admin/04-tenants/superhero-battle/overlays/cicd
-    repoURL: https://github.com/pittar-demos/rosa-devops.git
+    repoURL: https://github.com/pittar-demos/managed-openshift-devsecops.git
     targetRevision: main
   syncPolicy:
     automated:
