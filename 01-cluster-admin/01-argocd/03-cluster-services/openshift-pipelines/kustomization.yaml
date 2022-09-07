@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: openshift-gitops
 
 resources:
-  - openshift-pipelines-operator-application.yaml
+  - openshift-pipelines-application.yaml

@@ -2,17 +2,17 @@ kind: Application
 apiVersion: argoproj.io/v1alpha1
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "30"
+    argocd.argoproj.io/sync-wave: "40"
   labels:
     gitops.ownedBy: openshift-gitops
-  name: openshift-pipelines-operator
+  name: production-argocd
 spec:
   destination:
-    namespace: openshift-operators
+    namespace: production-gitops
     server: https://kubernetes.default.svc
-  project: cluster-services
+  project: tenants
   source:
-    path: 01-cluster-admin/03-cluster-services/openshift-pipelines-operator
+    path: 01-cluster-admin/04-tenants/production-gitops
     repoURL: https://github.com/pittar-demos/rosa-devops.git
     targetRevision: main
   syncPolicy:

@@ -5,5 +5,7 @@ namespace: openshift-pipelines
 
 resources:
   - cosign-password-secret.yaml
+  - cosign-generator-sa.yaml
+  - cosign-generator-rolebinding.yaml
   - cosign-secret-job.yaml
   - chains.yaml

@@ -2,6 +2,8 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   annotations:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
     argocd.argoproj.io/sync-options: Prune=false
   name: cosign-admin-rolebinding
 roleRef:
