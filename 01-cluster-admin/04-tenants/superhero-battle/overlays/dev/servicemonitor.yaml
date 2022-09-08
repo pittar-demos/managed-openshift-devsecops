@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: quarkus
+spec:
+  endpoints:
+    - path: /q/metrics
+      port: http
+      scheme: http
+  selector:
+    matchLabels:
+      prometheus-metrics: 'true'
