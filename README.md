@@ -12,6 +12,13 @@
 * PostgreSQL and MongoDB - Community supported containers (although supported PostgreSQL, MySQL and MariaDB container images come with OpenShift)
 * **Everything As Code**
 
+## Link to this Repo
+
+Open your camera and take a look at this QR code.  It will link to this repo:
+
+![Repository Link](images/qr.png)
+
+
 ## The Benefits of a Platform
 
 ROSA is more than just "managed Kubernetes" - it's managed Red Hat OpenShift Container Platform!  
