@@ -2,6 +2,7 @@
 
 ## TL;DR - What's In This Demo?
 
+* [Red Hat OpenShift Service on AWS - ROSA](https://aws.amazon.com/rosa/)
 * OpenShift GitOps (Argo CD) - Supported and included with OpenShift!
 * OpenShift Pipelines (Tekton) - Supported and included with OpenShift!
 * Tekton Chains (supply chain security) - Tech Preview (supported soon with OpenShift)!
