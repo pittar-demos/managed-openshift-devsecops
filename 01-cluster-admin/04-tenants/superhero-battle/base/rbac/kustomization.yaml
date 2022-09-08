@@ -3,3 +3,4 @@ kind: Kustomization
 
 resources:
   - view-role.yaml
+  - admin-role.yaml
