@@ -60,7 +60,12 @@ Deploy OpenShift GitOps Operator:
 oc apply -k https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/overlays/gitops-1.6
 ```
 
-In a moment, you will have your first instance of OpenShift GitOps (Argo CD) running in the `openshift-gitops` namespace.  You should also see a new link for "OpenShift GitOps" in the links menu of the OpenShift UI (the little "grid" icon near the top-right of the screen).  Don't login quite yet, though... there is a bit more config to do first.
+Wait for Argo CD to finish rolling out:
+```
+oc rollout status deploy openshift-gitops-server -n openshift-gitops
+```
+
+You will now have your first instance of OpenShift GitOps (Argo CD) running in the `openshift-gitops` namespace.  You should also see a new link for "OpenShift GitOps" in the links menu of the OpenShift UI (the little "grid" icon near the top-right of the screen).  Don't login quite yet, though... there is a bit more config to do first.
 
 ### Deploy an "App of Apps" for Cluster Config
 
@@ -72,6 +77,32 @@ First, we will deploy the "App of Apps" responsible for cluster configuration:
 oc apply -k 01-cluster-admin/01-argocd/01-clusters/nonprod/bootstrap
 ```
 
+This step will take a while, as it is deploying and configuring a lot of core services, including:
+
+* Sonatype Nexus
+* SonarQube
+* OpenShift Pipelines Operator
+* OpenShift Dev Spaces Operator and Instance
+* Gitea Operator and Instance
+* Compliance Operator and "Moderate (NIST 800-53)" Scans
+* User Workload Monitoring
+* Grafana Operator and Instance
+* Strimzi Operator
+* Web Terminal Operator
+* CICD, DEV and TEST namespaces for the "Quarkus Super Heroes" application.
+
+You can watch the progress of these services being deployed by logging into the default Argo CD instance as a cluster admin.
+
+If you notice the "Compliance" Application remains degraded, this is because the reports have not been generated.  You will need to manually start the `CronJob` the first time (it's set to run every day at 5am by default).
+
+```
+oc create job --from=cronjob/compile-compliance-report-cronjob initial-reports -n report-view
+```
+
+After 5-10 minutes, all applications should be "green" (with the exception of Compliance).  If they are not, you can try "refreshing" any application that is still "progressing", as it might simply be that Argo CD hasn't update the status of that application yet.
+
+Once all apps (with the possible exception of "Compliance") are green, you can move on to the next step.
+
 ### Deploy an "App of Apps" for Developer Setup
 
 Once the cluster is configured, it's time to bootstrap any applications, tools, or CI pipelines developers require.
@@ -80,7 +111,28 @@ Once the cluster is configured, it's time to bootstrap any applications, tools, 
 oc apply -k 02-developers/01-argocd/01-clusters/nonprod/bootstrap
 ```
 
-### Deploy an "App of Apps" for Production Setup
+This step will take a while, as it is deploying and configuring a lot of developer namespaces, this inclues:
+
+* OpenShift Pipelines in the "superhero-battle-cicd" namespace (under "Pipelines" side nav option)
+* Initial pipeline runs.
+* All Deployments, operator instances, PVCs, services, routes, etc... in "superhero-battle-dev" namespace.
+* All Deployments, operator instances, PVCs, services, routes, etc... in "superhero-battle-test" namespace.
+
+From the "Developer" OpenShift UI you can watch the progress of the initial builds by navigating to the "superher-battle-cicd" namespace and select "Pipelines" from the side navigation.  If a pipeline run fails, it might have been triggered before OpenShift Pipelines was fully configured.  If this is the case, simply select the failed pipeline run and select "Rerun" from the actions menu at the top-right of the screen.
+
+Once the builds complete, you can see the resulting applications in the "supehero-battle-dev" and "superhero-battle-test" namespaces.
+
+### Create Console Links
+
+To make navigating the rest of the demo easier, run the following command to create console links in the OpenShift UI for the different tools we will use (Gitea, Nexus, SonarQube, Argo CD, etc...):
+```
+cd 00-setup/
+./add-consolelinks.sh
+```
+
+### Deploy an "App of Apps" for Production Setup (not yet implemented)
+
+**NOTE:** This section is not yet implemented.  Skip this for now.
 
 Once the cluster is configured, it's time to bootstrap the "Production" environment (for the demo, we are still using the same cluster for simplicity).
 
