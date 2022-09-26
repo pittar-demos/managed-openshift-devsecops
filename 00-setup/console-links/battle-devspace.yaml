@@ -8,3 +8,5 @@ spec:
     imageURL: https://github.com/pittar-demos/rosa-devops/raw/main/images/devspaces.svg
   location: ApplicationMenu
   text: Battle DevSpace
+  href: https://devspaces.apps.cluster-5st5v.5st5v.sandbox2128.opentlc.com#http://gitea.scm.svc.cluster.local:3000/developer/battle-rest-heroes/raw/branch/main/devfile.yaml
+  href: https://devspaces.apps.cluster-z2t56.z2t56.sandbox696.opentlc.com#http://gitea.scm.svc.cluster.local:3000/developer/battle-rest-heroes/raw/branch/main/devfile.yaml
