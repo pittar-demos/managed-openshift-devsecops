@@ -22,13 +22,13 @@ Open your camera and take a look at this QR code.  It will link to this repo:
 
 ## The Benefits of a Platform
 
-ROSA is more than just "managed Kubernetes" - it's managed Red Hat OpenShift Container Platform!  
+ARO and ROSA are more than just "managed Kubernetes" - it's managed Red Hat OpenShift Container Platform!  
 
 What does that mean?  It means you have a managed service that is jointly engineered and supported by Red Hat and AWS/Microsoft.  You get a ton of fully supported runtimes and languages (OpenJDK 8/11/17, .Net Core, PHP, Python, Go, etc...) a great Kubernetes-native Java framework (Quarkus), and a number of technologies to build out a standards-based open source platform (OpenShift Serverless / Knative, OpenShift Service Mesh / Istio/Kiali/Jaeger, OpenShift Pipelines / Tekton, OpenShift GitOps / Argo CD, and more!).
 
-Instead of using your best people to stitch a number of technologies and services together for a "DIY" platform, OpenShift provides you with the underpinnings of a fantastic platform that you can use in AWS (ROSA) or in any data centre.  All of these great tools and technologies are tested, supported, and backed by Red Hat.  This means you can be confident knowing that when it's time to upgrade your ROSA cluster, the other technologies you rely on (Service Mesh, Serverless, GitOps, etc...) will continue to run nicely - and if there is an issue, you have Red Hat's award winning support to get you back on track.
+Instead of using your best people to stitch a number of technologies and services together for a "DIY" platform, OpenShift provides you with the underpinnings of a fantastic platform that you can use in AWS (ROSA), Microsoft Azure (ARO) or in any data centre.  All of these great tools and technologies are tested, supported, and backed by Red Hat.  This means you can be confident knowing that when it's time to upgrade your ARO or ROSA cluster, the other technologies you rely on (Service Mesh, Serverless, GitOps, etc...) will continue to run nicely - and if there is an issue, you have Red Hat's award winning support to get you back on track.
 
-Although there's a long list of great components that are part of ROSA, this demo will concentrate on a modern DevOps pipeline.  If you would like to replicate this demo in your own ROSA cluster (or any OpenShift 4.10 cluster, for that matter), you can follow along with the install instructions to get up and running in just a couple of commands!
+Although there's a long list of great components that are part of ARO and ROSA, this demo will concentrate on a modern DevOps pipeline.  If you would like to replicate this demo in your own AOR or ROSA cluster (or any OpenShift 4.10 cluster, for that matter), you can follow along with the install instructions to get up and running in just a couple of commands!
 
 ## Demo Concept
 
