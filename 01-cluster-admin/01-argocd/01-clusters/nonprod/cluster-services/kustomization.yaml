@@ -9,8 +9,8 @@ bases:
   - ../../../03-cluster-services/gitea/operator
   - ../../../03-cluster-services/gitea/instance
   - ../../../03-cluster-services/common-cicd-tools
-  - ../../../03-cluster-services/compliance
-  - ../../../03-cluster-services/workload-monitoring
+  #- ../../../03-cluster-services/compliance
+  #- ../../../03-cluster-services/workload-monitoring
 
 resources:
   - cluster-services-project.yaml
