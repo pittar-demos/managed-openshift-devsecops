@@ -1,8 +1,8 @@
-# Red Hat OpenShift Service on AWS (ROSA) - DevSecOps Demo
+# Managed Red Hat OpenShift (ARO and ROSA) - DevSecOps Demo
 
 ## TL;DR - What's In This Demo?
 
-* [Red Hat OpenShift Service on AWS - ROSA](https://aws.amazon.com/rosa/)
+* [Azure Red Hat OpenShift](https://azure.microsoft.com/en-us/products/openshift/#overview) or [Red Hat OpenShift Service on AWS - ROSA](https://aws.amazon.com/rosa/)
 * OpenShift GitOps (Argo CD) - Supported and included with OpenShift!
 * OpenShift Pipelines (Tekton) - Supported and included with OpenShift!
 * Tekton Chains (supply chain security) - Tech Preview (supported soon with OpenShift)!
@@ -24,7 +24,7 @@ Open your camera and take a look at this QR code.  It will link to this repo:
 
 ROSA is more than just "managed Kubernetes" - it's managed Red Hat OpenShift Container Platform!  
 
-What does that mean?  It means you have a managed service that is jointly engineered and supported by Red Hat and AWS.  You get a ton of fully supported runtimes and languages (OpenJDK 8/11/17, .Net Core, PHP, Python, Go, etc...) a great Kubernetes-native Java framework (Quarkus), and a number of technologies to build out a standards-based open source platform (OpenShift Serverless / Knative, OpenShift Service Mesh / Istio/Kiali/Jaeger, OpenShift Pipelines / Tekton, OpenShift GitOps / Argo CD, and more!).
+What does that mean?  It means you have a managed service that is jointly engineered and supported by Red Hat and AWS/Microsoft.  You get a ton of fully supported runtimes and languages (OpenJDK 8/11/17, .Net Core, PHP, Python, Go, etc...) a great Kubernetes-native Java framework (Quarkus), and a number of technologies to build out a standards-based open source platform (OpenShift Serverless / Knative, OpenShift Service Mesh / Istio/Kiali/Jaeger, OpenShift Pipelines / Tekton, OpenShift GitOps / Argo CD, and more!).
 
 Instead of using your best people to stitch a number of technologies and services together for a "DIY" platform, OpenShift provides you with the underpinnings of a fantastic platform that you can use in AWS (ROSA) or in any data centre.  All of these great tools and technologies are tested, supported, and backed by Red Hat.  This means you can be confident knowing that when it's time to upgrade your ROSA cluster, the other technologies you rely on (Service Mesh, Serverless, GitOps, etc...) will continue to run nicely - and if there is an issue, you have Red Hat's award winning support to get you back on track.
 
