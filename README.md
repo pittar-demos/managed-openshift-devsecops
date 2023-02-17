@@ -57,7 +57,7 @@ oc login # As a cluster admin
 
 Deploy OpenShift GitOps Operator:
 ```
-oc apply -k https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/overlays/gitops-1.6
+oc apply -k https://github.com/redhat-cop/gitops-catalog/openshift-gitops-operator/overlays/gitops-1.7
 ```
 
 Wait for Argo CD to finish rolling out:
