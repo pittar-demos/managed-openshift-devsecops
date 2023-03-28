@@ -4,3 +4,4 @@ metadata:
   name: openshift-gitops-admins
 users:
   - opentlc-mgr
+  - user1
