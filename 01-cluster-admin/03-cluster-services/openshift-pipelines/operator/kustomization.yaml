@@ -8,4 +8,4 @@ commonAnnotations:
   argocd.argoproj.io/sync-wave: "1"
 
 bases:
-  - github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/pipelines-1.8?ref=main
+  - github.com/redhat-cop/gitops-catalog/openshift-pipelines-operator/overlays/pipelines-1.10?ref=main
